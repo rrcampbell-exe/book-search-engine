@@ -16,22 +16,22 @@ const resolvers = {
       throw new AuthenticationError("This user is not logged in.");
     },
     // get all users
-    users: async () => {
-      return User.find().select("-__v -password");
-    },
+    // users: async () => {
+    //   return User.find().select("-__v -password");
+    // },
     // get one user
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).select("-__v -password");
-    },
+    // user: async (parent, { username }) => {
+    //   return User.findOne({ username }).select("-__v -password");
+    // },
     // get all books associated with a given user
-    books: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Book.find(params);
-    },
+    // books: async (parent, { username }) => {
+    //   const params = username ? { username } : {};
+    //   return Book.find(params);
+    // },
     // get a single book by id
-    book: async (parent, { _id }) => {
-      return Book.findOne({ _id });
-    },
+    // book: async (parent, { _id }) => {
+    //   return Book.findOne({ _id });
+    // },
   },
   Mutation: {
     // login to site, evaluate credentials, create token for user on successful evaluation
@@ -59,30 +59,30 @@ const resolvers = {
     },
     saveBook: async (parent, args, context) => {
       if (context.user) {
-        const book = await Book.create({ ...args, username: context.user.username });
+        // const book = await Book.create({ ...args, username: context.user.username });
     
-        await User.findByIdAndUpdate(
+        const userUpdate = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { savedBooks: book._id } },
+          { $push: { savedBooks: args.bookData } },
           { new: true }
         );
     
-        return book;
+        return userUpdate;
       }
     
       throw new AuthenticationError('You can only save books if logged in!');
     },
     removeBook: async (parent, args, context) => {
       if (context.user) {
-        const book = await Book.remove({ ...args, username: context.user.username });
+        // const book = await Book.remove({ ...args, username: context.user.username });
     
-        await User.findByIdAndUpdate(
+        const userUpdate = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedBooks: book._id } },
+          { $pull: { savedBooks: args.bookId } },
           { new: true }
         );
     
-        return book;
+        return userUpdate;
       }
     
       throw new AuthenticationError('You can only remove books if logged in!');

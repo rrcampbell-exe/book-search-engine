@@ -15,23 +15,6 @@ const resolvers = {
 
       throw new AuthenticationError("This user is not logged in.");
     },
-    // get all users
-    // users: async () => {
-    //   return User.find().select("-__v -password");
-    // },
-    // get one user
-    // user: async (parent, { username }) => {
-    //   return User.findOne({ username }).select("-__v -password");
-    // },
-    // get all books associated with a given user
-    // books: async (parent, { username }) => {
-    //   const params = username ? { username } : {};
-    //   return Book.find(params);
-    // },
-    // get a single book by id
-    // book: async (parent, { _id }) => {
-    //   return Book.findOne({ _id });
-    // },
   },
   Mutation: {
     // login to site, evaluate credentials, create token for user on successful evaluation

@@ -30,8 +30,6 @@ const SavedBooks = () => {
 
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
-      // reload page to display updated list of saved books
-      window.location.reload()
     } catch (err) {
       console.error(err);
     }

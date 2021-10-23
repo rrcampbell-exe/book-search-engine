@@ -12,6 +12,8 @@ A book search engine that uses a GraphQL API and React in order to let users cre
 - [Credits](#credits)
 - [Questions, Comments, Suggestions](#questions-comments-suggestions)
 
+## Screenshot
+![An image of the homepage for a logged in user after searching for "The Night Circus."](./client/public/screenshot.png)
 
 ## Usage
 Visit [the search engine](https://book-search-n-save-graphql.herokuapp.com/) and, upon arrival, either create an account or log in if you have already created an account. 
